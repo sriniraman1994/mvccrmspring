@@ -91,7 +91,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-tx-5.0.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-5.0.0.RELEASE-javadoc.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-5.0.0.RELEASE-sources.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-5.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-5.0.0.RELEASE.jar" sourcepath=""/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webflux-5.0.0.RELEASE-javadoc.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webflux-5.0.0.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webflux-5.0.0.RELEASE.jar"/>
@@ -102,5 +102,8 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-websocket-5.0.0.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-websocket-5.0.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/validation-api-1.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-annotations-2.9.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-core-2.9.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-databind-2.9.6.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

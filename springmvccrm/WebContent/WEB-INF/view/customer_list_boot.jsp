@@ -53,7 +53,7 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a
-						href="${pageContext.request.contextPath}/customer/addcustomer">Add</a>
+						href="${pageContext.request.contextPath}/customer/addcustomer" target="_blank" >Add</a>
 					</li>
 				</ul>
 			</div>
@@ -92,10 +92,10 @@
 						<td>${temp.lastName}</td>
 						<td>${temp.email}</td>
 						<td>
-							<a id="upd-button" type="button" class="btn btn-success"
-								href="${updateLink}">Update</a>
+							<button id="upd-button" type="button" class="btn btn-success"
+								value ="Open Window" onclick="window.open('${updateLink}')">Update</button>
 							<button id="read-button" type="button" class="btn btn-info">Read</button>
-							<a id="delete-button" type="button" class="btn btn-danger" href="${deleteLink}">Delete</a>
+							<button id="delete-button" type="button" class="btn btn-danger" value ="Open Window" onclick="window.open('${deleteLink}')">Delete</button>
 						</td>
 					</tr>
 				</c:forEach>

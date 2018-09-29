@@ -9,5 +9,6 @@ public interface CustomerService {
 	public String insertCustomer(CustomerModel customer);
 	public CustomerModel getCustomer(int customerId);
 	public String deleteCustomer(CustomerModel customer);
+	public boolean checkEmail(String email);
 
 }

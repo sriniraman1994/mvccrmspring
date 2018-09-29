@@ -26,6 +26,8 @@
 		<property name="prefix" value="/WEB-INF/view/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+<bean id="validator"
+    class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
     <!-- Step 1: Define Database DataSource / connection pool -->
 	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -34,7 +36,7 @@
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/jinji_one_to_one?useSSL=false" />
         <property name="user" value="jinji" />
         <property name="password" value="jinji" /> 
-
+	
         <!-- these are connection pool properties for C3P0 -->
 		<property name="initialPoolSize" value="5"/>
         <property name="minPoolSize" value="5" />
@@ -48,9 +50,11 @@
 		<property name="dataSource" ref="myDataSource" />
 		<property name="packagesToScan" value="com.springmvccrm.entity" />
 		<property name="hibernateProperties">
+<!-- 		<property name="javax.persistence.validation.mode" value="none"/> -->
 		   <props>
 		      <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 		      <prop key="hibernate.show_sql">true</prop>
+		       <prop key="javax.persistence.validation.factory">validator</prop>
 		   </props>
 		
 		</property>

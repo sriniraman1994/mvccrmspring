@@ -62,7 +62,7 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="#about">Add</a></li>
+					<li><a href="#about">${methodName}</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -76,6 +76,167 @@
 	</div>
 	<div class="container">
 		<!-- 	<div class="container"> -->
+		<%-- 		<c:if test="${not empty action}"> --%>
+		<%-- 			<c:if test="${action eq 'updateCustomer'}"> --%>
+		<!-- 				<script type="text/javascript"> -->
+		<!-- 			var url -->
+		<!-- 				</script> -->
+		<%-- 			</c:if> --%>
+
+		<%-- 		</c:if> --%>
+		<%-- <c:out value="${css}" > --%>
+		<%-- </c:out> --%>
+		<c:if test="${not empty methodName}">
+			<c:if test="${methodName eq 'Add Customer' }">
+				<script type="text/javascript">
+					$(document)
+							.ready(
+									function() {
+
+										// 										$('#result-modal').modal({
+										// 											backdrop : 'static',
+										// 											keyboard : false
+										// 									});
+										// 										$('#result-modal').modal('show');
+
+										// 										$('#success-btn').focus();
+										$('#email')
+												.change(
+														function() {
+															var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+															if ($('#email')
+																	.val() !== ''
+																	&& re
+																			.test($(
+																					'#email')
+																					.val())) {
+																var result = {};
+																var data = {};
+																var deferred = $
+																		.Deferred()
+																data["email"] = $(
+																		'#email')
+																		.val();
+																$
+																		.ajax({
+																			url : "http://localhost:8082/springmvccrm/customer/checkEmail",
+																			type : 'POST',
+																			dataType : 'json',
+																			data : JSON
+																					.stringify(data),
+																			contentType : 'application/json',
+																			mimeType : 'application/json',
+																			beforeSend : function(
+																					xhr) {
+																				xhr
+																						.setRequestHeader(
+																								"Accept",
+																								"application/json");
+																				xhr
+																						.setRequestHeader(
+																								"Content-Type",
+																								"application/json");
+																			},
+																			success : function(
+																					data) {
+																				if (data) {
+																					if (!$(
+																							'#emailError')
+																							.is(
+																									':visible')) {
+																						$(
+																								'#emaildup')
+																								.text(
+																										'email id already exists');
+																						$(
+																								'#emaildup')
+																								.show();
+																						$(
+																								'#savebutton')
+																								.attr(
+																										'disabled',
+																										true);
+																					}
+
+																				} else {
+																					$(
+																							'#emaildup')
+																							.hide();
+																					$(
+																							'#savebutton')
+																							.attr(
+																									'disabled',
+																									false);
+																				}
+
+																				// 																			if (window.opener
+																				// 																					&& !window.opener.closed) {
+																				// 																				window.opener.location
+																				// 																						.reload();
+																				// 																				window
+																				// 																						.close();
+																				// 																			} else {
+																				// 																				window
+																				// 																						.close();
+																				// 																			}
+																				// 				                        alert("sucess" + " " + JSON.stringify(data));
+																				// 				                        alert(JSON.parse(data));
+																				//commit(true);
+																				return deferred
+																						.resolve();
+																			},
+
+																			error : function(
+																					data,
+																					status,
+																					er) {
+																				// 																				alert("error: "
+																				// 																						+ data
+																				// 																						+ " status: "
+																				// 																						+ status
+																				// 																						+ " er:"
+																				// 																						+ er);
+																				return deferred
+																						.reject();
+																			}
+
+																		});
+																return deferred
+																		.promise(true);
+															}
+														});
+
+										// 										$('#submit-form')
+										// 												.submit(
+										// 														function(e) {
+										// 															var deferred = $.Deferrerd();
+										// 															$.Deferred().resolve().then(function(){
+										// 																return $('#email').focusout()
+										// 															}).then(function() {
+										// 																				if ($(
+										// 																						'#emaildup')
+										// 																						.is(
+										// 																								':visible')) {
+										// 																					e.preventDefault();
+										// 																					return deferred.resolve(false);
+										// 																				} else {
+										// 																					return deferred.resolve(true);
+										// 																				}
+										// 																				return deferred.promise(true);
+										// 																			});
+
+										// 														});
+										$(document).ajaxStart(function() {
+											$("#wait").css("display", "block");
+										});
+										$(document).ajaxComplete(function() {
+											$("#wait").css("display", "none");
+										});
+									});
+				</script>
+			</c:if>
+		</c:if>
+
 		<c:if test="${not empty css}">
 			<div class="alert alert-${css} alert-block alert-dismissible"
 				role="alert">
@@ -93,8 +254,8 @@
 				<div class="col-sm-5">
 					<form:input class="form-control input-sm" id="firstname"
 						placeholder="firstname" path="firstName" />
-					<form:errors class="control-label error" style="color:red"
-						path="firstName" />
+					<form:errors id="firstNameError" class="control-label error"
+						style="color:red" path="firstName" />
 				</div>
 			</div>
 			<div id="LastName_div" class="form-group">
@@ -102,8 +263,8 @@
 				<div class="col-sm-5">
 					<form:input class="form-control" id="lastname"
 						placeholder="lastname" path="lastName" />
-					<form:errors class="control-label error" style="color:red"
-						path="lastName" />
+					<form:errors id="lastNameError" class="control-label error"
+						style="color:red" path="lastName" />
 				</div>
 			</div>
 			<div id="email_div" class="form-group ">
@@ -111,7 +272,16 @@
 				<div class="col-sm-5">
 					<form:input class="form-control" id="email" placeholder="email"
 						path="email" />
-					<form:errors class="control-label" style="color:red" path="email" />
+					<div id="wait"
+						style="display: none; width: 20px; height: 20px; border: 1px solid black; position: absolute; top: 20%; left: 98%; padding: 2px;">
+						<img src="<c:url value="/resources/img/giphy.gif" />" width="20"
+							height="20" />
+					</div>
+					<form:errors id="emailError" class="control-label"
+						style="color:red" path="email" />
+
+					<label id="emaildup" class="control-label error"
+						style="color: red; display: none" />
 				</div>
 			</div>
 			<div>
@@ -127,6 +297,16 @@
 				$('#firstname').val('');
 				$('#lastname').val('');
 				$('#email').val('');
+				if (window.opener && !window.opener.closed) {
+					window.opener.location.reload();
+				}
+			</script>
+		</c:if>
+		<c:if test="${msg eq 'customer updated succesfully'}">
+			<script type="text/javascript">
+				if (window.opener && !window.opener.closed) {
+					window.opener.location.reload();
+				}
 			</script>
 		</c:if>
 		<c:if test="${action eq 'removeCustomer'}">
@@ -158,17 +338,12 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title">Success</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
 						</div>
 						<div class="modal-body">
 							<p>Deleted successfully</p>
 						</div>
 						<div class="modal-footer">
-							<a id = "success-btn"type="button" class="btn btn-primary"
-								href="${pageContext.request.contextPath}/customer/customerlist">OK</a>
+							<a id="success-btn" type="button" class="btn btn-primary">OK</a>
 						</div>
 					</div>
 				</div>
@@ -176,9 +351,9 @@
 			<script type="text/javascript">
 				$(document).ready(
 						function() {
-							
+
 							$('#submit-form').submit(function(e) {
-								if(!$('#exampleModalCenter').is(':visible')){
+								if (!$('#exampleModalCenter').is(':visible')) {
 									e.preventDefault();
 								}
 							});
@@ -188,22 +363,85 @@
 							$('#firstname').attr('disabled', true);
 							$('#lastname').attr('disabled', true);
 							$('#email').attr('disabled', true);
-							$('#deleteCustomer').click(function(){
+
+							$('#exampleModalCenter').on('shown.bs.modal',
+									function() {
+										$('#deleteCustomer').focus();
+									});
+							$('#deleteCustomer').click(function() {
 								$('#submit-form').submit();
 							});
-							$('#deleteCustomer').focus();
+
 						});
 			</script>
 			<c:if test="${msg eq 'deletionSuccess'}">
 				<script type="text/javascript">
-					$(document).ready(function() {
-						$('#result-modal').modal('show');
-						$('#success-btn').focus();
-						$('#result-modal').modal({
-							backdrop:'static',
-							keyboard:false
-						})
-					});
+					var result = {};
+					var data = {};
+					data["msg"] = "welcome";
+					$(document)
+							.ready(
+									function() {
+										$('#result-modal').modal({
+											backdrop : 'static',
+											keyboard : false
+										});
+										$('#result-modal').modal('show');
+										$('#success-btn').focus();
+										$('#success-btn')
+												.click(
+														function() {
+															$
+																	.ajax({
+																		url : "http://localhost:8082/springmvccrm/customer/getAjaxResult",
+																		type : 'POST',
+																		dataType : 'json',
+																		data : JSON
+																				.stringify(data),
+																		contentType : 'application/json',
+																		mimeType : 'application/json',
+																		beforeSend : function(
+																				xhr) {
+																			xhr
+																					.setRequestHeader(
+																							"Accept",
+																							"application/json");
+																			xhr
+																					.setRequestHeader(
+																							"Content-Type",
+																							"application/json");
+																		},
+																		success : function(
+																				data) {
+																			if (window.opener
+																					&& !window.opener.closed) {
+																				window.opener.location
+																						.reload();
+																				window
+																						.close();
+																			} else {
+																				window
+																						.close();
+																			}
+																			// 				                        alert("sucess" + " " + JSON.stringify(data));
+																			// 				                        alert(JSON.parse(data));
+																			//commit(true);
+																		},
+
+																		error : function(
+																				data,
+																				status,
+																				er) {
+																			alert("error: "
+																					+ data
+																					+ " status: "
+																					+ status
+																					+ " er:"
+																					+ er);
+																		}
+																	});
+														});
+									});
 				</script>
 			</c:if>
 		</c:if>

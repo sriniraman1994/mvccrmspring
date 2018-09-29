@@ -14,4 +14,6 @@ public interface CustomerDao {
 
 	public String deleteCustomer(CustomerModel customer);
 
+	public Long checkEmail(String email);
+
 }

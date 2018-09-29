@@ -39,5 +39,12 @@ public class CustomerDaoImpl implements CustomerDao {
 		session.delete(customer);
 		return "success";
 	}
+	@Override
+	public Long checkEmail(String email) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("select count(*) from CustomerModel customer where customer.email=:email");
+		query.setParameter("email", email);
+		return (Long)query.uniqueResult();
+	}
 
 }
