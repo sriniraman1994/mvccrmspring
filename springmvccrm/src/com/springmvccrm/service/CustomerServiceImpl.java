@@ -14,27 +14,27 @@ public class CustomerServiceImpl implements CustomerService{
     @Autowired
 	private CustomerDao customerDao;
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional()
 	public List<CustomerModel> getCustomersList() {
 		return customerDao.getCustomersList();
 	}
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional()
 	public String insertCustomer(CustomerModel customer) {
 		return customerDao.insertCustomer(customer);
 	}
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional()
 	public CustomerModel getCustomer(int customerId) {
 		return customerDao.getCustomer(customerId);
 	}
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional()
 	public String deleteCustomer(CustomerModel customer) {
 		return customerDao.deleteCustomer(customer);
 	}
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional()
 	public boolean checkEmail(String email) {
 		Long count = customerDao.checkEmail(email);
 		if(count.intValue()>0){

@@ -105,5 +105,10 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-annotations-2.9.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-core-2.9.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-databind-2.9.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ehcache-3.6.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-ehcache-5.2.12.Final.jar" sourcepath="src"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ehcache-2.10.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.7.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ehcache-core-2.6.11.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

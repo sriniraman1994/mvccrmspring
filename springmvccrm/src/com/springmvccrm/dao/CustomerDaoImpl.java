@@ -17,7 +17,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	public List<CustomerModel> getCustomersList() {
 		Session session = sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
-		Query<CustomerModel> customerQuery =session.createQuery("from CustomerModel",CustomerModel.class); 
+		Query<CustomerModel> customerQuery =session.createQuery("from CustomerModel",CustomerModel.class).setCacheable(true); 
 		List<CustomerModel> customerList = customerQuery.getResultList();
 		return customerList;
 	}
