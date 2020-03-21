@@ -19,12 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.springmvccrm.entity.CustomerModel;
+import com.springmvccrm.entity.Mode;
 import com.springmvccrm.jsonviews.AjaxResponseBody;
 import com.springmvccrm.jsonviews.JViews;
 import com.springmvccrm.service.CustomerService;
@@ -46,7 +45,7 @@ public class CustomerController {
 			CustomerModel customerModel = customerService.getCustomer(customerId);
 			model.addAttribute("saveCustomer", customerModel);
 		}
-		
+		Mode.MODE="update";
 		model.addAttribute("action","updateCustomer");
 		model.addAttribute("button","update");
 		model.addAttribute("methodName","update Customer");
@@ -59,6 +58,7 @@ public class CustomerController {
 		if(!model.containsAttribute("saveCustomer")){
 			model.addAttribute("saveCustomer", customerModel);
 		}
+		Mode.MODE="Add";
 		model.addAttribute("action","insertCustomer");
 		model.addAttribute("button","add");
 		model.addAttribute("methodName","Add Customer");
@@ -132,6 +132,7 @@ public class CustomerController {
 		model.addAttribute("saveCustomer", customerModel);
 		model.addAttribute("action","removeCustomer");
 		model.addAttribute("button","delete");
+		Mode.MODE = "delete";
 		model.addAttribute("methodName","Delete Customer");
 		return "customer_crud";
 	}

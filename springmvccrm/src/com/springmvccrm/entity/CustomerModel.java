@@ -45,7 +45,16 @@ public class CustomerModel {
 	@EmailCheck(value="@gmail.com",message="Email already exists")
 	@JsonView(JViews.Data.class)
 	private String email;
+	@Column(name="address")
+	@JsonView(JViews.Data.class)
+	private String address;
 	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

@@ -66,7 +66,10 @@
 			Customer Relationship Management <small>customer details</small>
 		</h1>
 	</div>
-
+	<div class="col-sm-5 form-group">
+				<button type="button" id="csvDownload"
+					class="btn btn-primary center-block" onclick= "location.href='/springmvccrm/customercsv/downloadCsv' ">csvDownload</button>
+			</div>
 	<div id="table-div" class="container table-responsive">
 		<table class="table table-striped">
 			<thead>
@@ -74,6 +77,7 @@
 					<th>Firstname</th>
 					<th>Lastname</th>
 					<th>Email</th>
+					<th>address</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -91,6 +95,7 @@
 						<td>${temp.firstName}</td>
 						<td>${temp.lastName}</td>
 						<td>${temp.email}</td>
+						<td>${temp.address}</td>
 						<td>
 							<button id="upd-button" type="button" class="btn btn-success"
 								value ="Open Window" onclick="window.open('${updateLink}')">Update</button>

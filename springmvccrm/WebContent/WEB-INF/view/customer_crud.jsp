@@ -284,6 +284,13 @@
 						style="color: red; display: none" />
 				</div>
 			</div>
+			<div id="text_address" class="form-group">
+				<label class="col-sm-2 control-label">Address</label>
+				<div class="col-sm-5">
+					<form:textarea rows="5" cols="30" class="form-control input-sm"
+						id="address" placeholder="adress" path="address" />
+				</div>
+			</div>
 			<div>
 				<form:hidden path="id" />
 			</div>
@@ -379,69 +386,24 @@
 					var result = {};
 					var data = {};
 					data["msg"] = "welcome";
-					$(document)
-							.ready(
-									function() {
-										$('#result-modal').modal({
-											backdrop : 'static',
-											keyboard : false
-										});
-										$('#result-modal').modal('show');
-										$('#success-btn').focus();
-										$('#success-btn')
-												.click(
-														function() {
-															$
-																	.ajax({
-																		url : "http://localhost:8082/springmvccrm/customer/getAjaxResult",
-																		type : 'POST',
-																		dataType : 'json',
-																		data : JSON
-																				.stringify(data),
-																		contentType : 'application/json',
-																		mimeType : 'application/json',
-																		beforeSend : function(
-																				xhr) {
-																			xhr
-																					.setRequestHeader(
-																							"Accept",
-																							"application/json");
-																			xhr
-																					.setRequestHeader(
-																							"Content-Type",
-																							"application/json");
-																		},
-																		success : function(
-																				data) {
-																			if (window.opener
-																					&& !window.opener.closed) {
-																				window.opener.location
-																						.reload();
-																				window
-																						.close();
-																			} else {
-																				window
-																						.close();
-																			}
-																			// 				                        alert("sucess" + " " + JSON.stringify(data));
-																			// 				                        alert(JSON.parse(data));
-																			//commit(true);
-																		},
+					
+					$(document).ready(function() {
+						$('#result-modal').modal({
+							backdrop : 'static',
+							keyboard : false
+						});
+						$('#result-modal').modal('show');
+						$('#success-btn').focus();
+						$('#success-btn').click(function() {
+							if (window.opener && !window.opener.closed) {
+								window.opener.location.reload();
+								window.close();
+							} else {
+								window.close();
+							}
 
-																		error : function(
-																				data,
-																				status,
-																				er) {
-																			alert("error: "
-																					+ data
-																					+ " status: "
-																					+ status
-																					+ " er:"
-																					+ er);
-																		}
-																	});
-														});
-									});
+						});
+					});
 				</script>
 			</c:if>
 		</c:if>
