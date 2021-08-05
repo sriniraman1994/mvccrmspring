@@ -51,7 +51,7 @@
 		<property name="hibernateProperties">
 			<!-- <property name="javax.persistence.validation.mode" value="none"/> -->
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL55Dialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="javax.persistence.validation.factory">validator</prop>
 				<!-- Enable second level cache -->
@@ -61,6 +61,7 @@
 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory
 				</prop>
 				<prop key="hibernate.generate_statistics">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 <!-- 				<prop key="net.sf.ehcache.configurationResourceName">/WEB-INF/ehCache.xml</prop> -->
 			</props>
 
